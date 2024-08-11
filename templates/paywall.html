@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/paywall.css') }}">
+    <script>
+        function togglePaymentFields() {
+            const mpesaFields = document.getElementById('mpesa-fields');
+            const cardDetails = document.getElementById('card-details');
+
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+            if (paymentMethod === 'mpesa') {
+                mpesaFields.style.display = 'block';
+                cardDetails.style.display = 'none';
+            } else {
+                mpesaFields.style.display = 'none';
+                cardDetails.style.display = 'block';
+            }
+        }
+    </script>
+</head>
+<body onload="togglePaymentFields()">
+    <div class="container">
+        <div class="payment-wrapper">
+            <div class="payment-method-section">
+                <h3>Select payment method</h3>
+                <hr>
+                <div class="payment-methods">
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="visa" checked onclick="togglePaymentFields()">
+                        <img src="{{ url_for('static', filename='images/visa.png') }}" alt="Visa">
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="mpesa" onclick="togglePaymentFields()">
+                        <img src="{{ url_for('static', filename='images/mpesa.png') }}" alt="M-Pesa">
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="mastercard" onclick="togglePaymentFields()">
+                        <img src="{{ url_for('static', filename='images/mastercard.png') }}" alt="Mastercard">
+                    </label>
+                </div>
+
+                <!-- Card Details Section -->
+                <div id="card-details" class="card-details">
+                    <div class="input-group">
+                        <label for="name-on-card">Name on card</label>
+                        <input type="text" id="name-on-card" placeholder="Your Name">
+                    </div>
+                    <div class="input-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="4444 0000 0000 0000">
+                    </div>
+                    <div class="input-group-row">
+                        <div class="input-group">
+                            <label for="expiry-date">Expiration Date</label>
+                            <input type="text" id="expiry-date" placeholder="MM/YYYY">
+                        </div>
+                        <div class="input-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="000">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- M-Pesa Fields Section -->
+                <div id="mpesa-fields" style="display:none;">
+                    <div class="input-group">
+                        <label for="full-name">Full Name</label>
+                        <input type="text" id="full-name" placeholder="Your Full Name">
+                    </div>
+                    <div class="input-group">
+                        <label for="mobile-number">Mobile Number</label>
+                        <input type="text" id="mobile-number" placeholder="0712345678">
+                    </div>
+                    <p style="font-size: small;">You will receive an M-Pesa payment prompt on this number.</p>
+                </div>
+
+            </div>
+
+            <div class="summary-section">
+                <h3>Summary</h3>
+                <hr>
+                <a href="#">Add Promo Code?</a>
+                <div class="summary-details">
+                    <hr>
+                    <p><strong>Total: </strong><span><strong>KES 100</strong></span></p>
+                    <br>
+                </div>
+                <div class="terms">
+                    <p>By clicking pay:</p>
+                    <ul>
+                        <li>I agree to the processing and use of my data in accordance with the Zabie’s Privacy Policy</li>
+                    </ul>
+                </div>
+                <button class="complete-payment-btn">Complete Payment</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

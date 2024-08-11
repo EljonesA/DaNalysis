@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaNalysis</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="{{ url_for('landing_page') }}">DaNalysis</a></div>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <i class="fa fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="{{ url_for('macroeconomic_analysis') }}">Macroeconomic Analysis</a></li>
+                <li><a href="{{ url_for('financial_analysis') }}">Financial Analysis</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="feature-section_landing">
+            <h2 class="section-title">Data Analysis</h2>
+            <p class="section-description">This is a financial and macroeconomic data analysis platform. The platform provide you with key macroeconomic and financial data points specifically for Kenya.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <img src="{{ url_for('static', filename='images/m_analysis.png') }}" alt="MacroEconomic Analysis Icon" class="feature-image">
+                    <h3 class="feature-heading">MacroEconomic Analysis</h3>
+                    <p class="feature-text">Focuses on the performance of economies – changes in economic output, inflation, interest and foreign exchange rates, and the balance of payments.</p>
+                    <a href="{{ url_for('macroeconomic_analysis') }}" class="learn-more">Learn →</a>
+                </div>
+                <div class="feature-card">
+                    <img src="{{ url_for('static', filename='images/bar.png') }}" alt="Financial Analysis Icon" class="feature-image">
+                    <h3 class="feature-heading">Financial Analysis</h3>
+                    <p class="feature-text">The process of assessing entities (Safaricom for our case) to determine their suitability for investment.</p>
+                    <a href="{{ url_for('financial_analysis') }}" class="learn-more">Learn →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
+    <footer>
+        <section class="footer-section">
+            <p>&copy; 2024 <a href="#">Website</a>. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+            </div>
+        </section>  
+    </footer>
+
+    <script>
+        // script.js
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+        });
+    </script>
+</body>
+</html>

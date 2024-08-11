@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacroEconomic Analysis - DaNalysis</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="{{ url_for('landing_page') }}">DaNalysis</a></div>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <i class="fa fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('landing_page') }}">Home</a></li>
+                <li><a href="{{ url_for('macroeconomic_analysis') }}" class="active">MacroEconomic Analysis</a></li>
+                <li><a href="{{ url_for('dashboard1') }}">GDP & Population</a></li>
+                <li><a href="{{ url_for('dashboard2') }}">Exchange Rates</a></li>
+                <li><a href="{{ url_for('dashboard3') }}">Inflation Analysis</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="feature-section_landing">
+            <h2 class="section-title">MacroEconomic Analysis</h2>
+            <p class="section-description">Explore key macroeconomic factors affecting the Kenyan economy.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <img src="{{ url_for('static', filename='images/group.png') }}" alt="Population Icon" class="feature-image">
+                    <h3 class="feature-heading">GDP and Population</h3>
+                    <p class="feature-text">GDP Measures the total economic output of a country, reflecting the value of all goods and services produced over a specific period. Population refers to the total number of people living in a country.</p>
+                    <a href="{{ url_for('dashboard1') }}" class="learn-more">View Dashboard 1 →</a>
+                </div>
+                <div class="feature-card">
+                    <img src="{{ url_for('static', filename='images/chart.png') }}" alt="Exchange Rates Icon" class="feature-image">
+                    <h3 class="feature-heading">USD/KES Exchange Rates</h3>
+                    <p class="feature-text">The value of one U.S. dollar (USD) in terms of Kenyan shillings (KES). It reflects the economic relationship between the two currencies.</p>
+                    <a href="{{ url_for('dashboard2') }}" class="learn-more">View Dashboard 2 →</a>
+                </div>
+                <div class="feature-card">
+                    <img src="{{ url_for('static', filename='images/inflation_analysis.png') }}" alt="Inflation Icon" class="feature-image">
+                    <h3 class="feature-heading">Inflation Analysis</h3>
+                    <p class="feature-text">The general level of prices for goods and services rises, leading to a decrease in the purchasing power of a currency.</p>
+                    <a href="{{ url_for('dashboard3') }}" class="learn-more">View Dashboard 3 →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <section class="footer-section">
+            <p>&copy; 2024 <a href="#">Website</a>. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+            </div>
+        </section>  
+    </footer>
+
+    <script>
+        // script.js
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+        });
+    </script>
+</body>
+</html>

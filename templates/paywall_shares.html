@@ -323,7 +323,7 @@
                     </div>
                     <!-- Card Details Section -->
                     <div id="card-details" class="card-details">
-                        <form id="payment-form" method="post" action="{{ url_for('process_payment') }}">
+                        <form id="payment-form" method="post" action="{{ url_for('process_payment_shares') }}">
                             <div class="input-group">
                                 <input type="text" id="customer-name" name="customer_name" placeholder="Your Full Name" required>
                             </div>
@@ -341,7 +341,7 @@
     
                     <!-- M-Pesa Fields Section -->
                     <div id="mpesa-fields" style="display:none;">
-                        <form id="mpesa-form" method="post" action="{{ url_for('process_payment') }}">
+                        <form id="mpesa-form" method="post" action="{{ url_for('process_payment_shares') }}">
                             <div class="input-group">
                                 <input type="text" id="full-name" name="full_name" placeholder="Your Full Name" required>
                             </div>

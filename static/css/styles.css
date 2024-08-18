@@ -66,6 +66,10 @@ header {
     color: #333;
 }
 
+.nav-links li a:hover {
+    color: #e11d48
+}
+
 .nav-links li a.active {
     text-decoration: underline;
     text-decoration-color: #e11d48;
@@ -480,6 +484,7 @@ footer a {
         background-color: #fff;
         border: 1px solid #e3e7f2;
         border-radius: 0 0 8px 8px;
+        z-index: 1000; /* Ensure the menu appears above other elements */
         padding: 1rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
@@ -521,6 +526,7 @@ footer a {
         background-color: #fff;
         border: 1px solid #e3e7f2;
         border-radius: 0 0 8px 8px;
+        z-index: 1000; /* Ensure the menu appears above other elements */
         padding: 1rem;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }

@@ -33,7 +33,7 @@
             let price = 100; // initial price
 
             // check promo code & adjust price
-            if (promoCodeInput === "DANALYSIS100") {
+            if (promoCodeInput === "UCHAMBUZI100") {
                 price = 0;
                 promoMessageElement.style.display = "block";
                 promoMessageElement.textContent = "Promo code applied successfully!";
@@ -298,6 +298,7 @@
                 <li><a href="#" class="active">Home</a></li>
                 <li><a href="{{ url_for('macroeconomic_analysis') }}">Macroeconomic Analysis</a></li>
                 <li><a href="{{ url_for('financial_analysis') }}">Financial Analysis</a></li>
+                <li><a href="{{ url_for('logout') }}" class="logout-icon"><i class="fa fa-sign-out"></i></a></li>
             </ul>
         </nav>
     </header>

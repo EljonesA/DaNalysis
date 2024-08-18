@@ -11,7 +11,7 @@
     <style>
         /* Blur effect for non-premium users */
         .blurred {
-            filter: blur(5px);
+            filter: blur(9px);
             pointer-events: none; /* Prevent interaction with blurred content */
         }
         .locked-content {
@@ -68,6 +68,7 @@
                 <li><a href="{{ url_for('financial_analysis') }}">Financial Analysis</a></li>
                 <li><a href="{{ url_for('page1') }}">Page 1</a></li>
                 <li><a href="{{ url_for('page2') }}" class="active">Page 2</a></li>
+                <li><a href="{{ url_for('logout') }}" class="logout-icon"><i class="fa fa-sign-out"></i></a></li>
             </ul>
         </nav>
     </header>

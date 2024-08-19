@@ -7,5 +7,5 @@ firebaseConfig = {
   "messagingSenderId": "369620575728",
   "appId": "1:369620575728:web:f7959791e95ccee52ba935",
   "measurementId": "G-NT8HLHM84K",
-  "databaseURL": "",
+  "databaseURL": "https://danalysis-f36ab-default-rtdb.firebaseio.com"
 }

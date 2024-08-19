@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaNalysis</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        function togglePaymentFields() {
+            const mpesaFields = document.getElementById('mpesa-fields');
+            const cardDetails = document.getElementById('card-details');
+
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+            if (paymentMethod === 'mpesa') {
+                mpesaFields.style.display = 'block';
+                cardDetails.style.display = 'none';
+            } else {
+                mpesaFields.style.display = 'none';
+                cardDetails.style.display = 'block';
+            }
+        }
+
+        // handle coupons
+        function applyCoupon() {
+            const promoCodeInput = document.getElementById('promo-code').value;
+            const totalPriceElement = document.getElementById('total-price');
+            const totalPriceInput = document.getElementById('total-price-input')
+            const promoMessageElement = document.getElementById('promo-message');
+            let price = 100; // initial price
+
+            // check promo code & adjust price
+            if (promoCodeInput === "UCHAMBUZI100") {
+                price = 0;
+                promoMessageElement.style.display = "block";
+                promoMessageElement.textContent = "Promo code applied successfully!";
+                promoMessageElement.style.color = "green";
+            } else {
+                promoMessageElement.style.display = "block";
+                promoMessageElement.textContent = "Invalid promo code.";
+                promoMessageElement.style.color = "red";
+            }
+
+            totalPriceElement.textContent = `KES ${price / 100}`;
+            totalPriceInput.value = price;
+        }
+    </script>
+    <style>
+        /* General Styles */
+.feature-section_landing {
+    padding: 20px;
+    background-color: #f9f9f9; /* Adjust as needed */
+}
+
+.feature-grid {
+    display: flex;
+    justify-content: space-between; /* Distribute space between columns */
+    gap: 20px; /* Space between columns */
+}
+
+.feature-card {
+    background-color: #fff; /* Card background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    flex: 1; /* Allow the cards to grow and shrink as needed */
+    min-width: 0; /* Prevent overflow issues */
+}
+
+.feature-card h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.summary-details {
+    text-align: left; /* Aligns summary details to the left */
+}
+
+.summary-details p {
+    margin: 10px 0; /* Spacing between elements */
+}
+
+.terms {
+    text-align: left; /* Aligns terms to the left */
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: xx-small;
+}
+
+/* Specific Styles for Cards */
+.payment-methods {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+}
+
+.payment-option img {
+    width: 50px; /* Adjust size as needed */
+}
+
+.card-details,
+#mpesa-fields {
+    margin-top: 15px;
+}
+
+/* .summary-details {
+    margin-top: 20px;
+} */
+
+.promo {
+    padding: 10px;
+}
+
+/* Styles for the promo input field */
+.promo input {
+    width: 60%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.promo button {
+    margin-left: 5px;
+    background-color: #155724;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.promo button:hover {
+    background-color: #2980b9;
+}
+
+
+.complete-payment-btn {
+    background-color: #e11d48;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.complete-payment-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Modal Styles */
+.modal-content {
+    max-width: 400px;
+}
+
+@media (max-width: 768px) {
+    .feature-grid {
+        flex-direction: column; /* Stack columns on smaller screens */
+    }
+}
+
+
+        /* Add styles for the loading spinner */
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .processing {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* Center payment methods */
+.payment-methods {
+    display: flex;
+    justify-content: center; /* Center payment options */
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+/* Ensure payment options align vertically */
+.payment-option {
+    display: flex;
+    align-items: center;
+}
+
+/* Card Details and M-Pesa Fields */
+.card-details,
+#mpesa-fields {
+    margin-top: 15px;
+}
+
+.input-group {
+    margin-bottom: 15px; /* Spacing between input fields */
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px; /* Spacing between label and input */
+}
+
+.input-group input {
+    width: 100%; /* Full width of container */
+    padding: 8px; /* Padding inside input fields */
+    border: 1px solid #ddd; /* Border styling */
+    border-radius: 4px; /* Rounded corners */
+}
+
+/* Center the card details and M-Pesa fields */
+.card-details,
+#mpesa-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align to the left */
+}
+
+
+        /* Styles for the modal */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.4); 
+            padding-top: 100px; 
+            text-align: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 0 auto; 
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px; 
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .modal-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+
+        .modal-success p {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body onload="togglePaymentFields()">
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="{{ url_for('landing_page') }}">DaNalysis</a></div>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <i class="fa fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="{{ url_for('macroeconomic_analysis') }}">Macroeconomic Analysis</a></li>
+                <li><a href="{{ url_for('financial_analysis') }}">Financial Analysis</a></li>
+                <li><a href="{{ url_for('logout') }}" class="logout-icon"><i class="fa fa-sign-out"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="feature-section_landing">
+            <h2 class="section-title">Data Analysis</h2>
+            <p class="section-description">This is a financial and macroeconomic data analysis platform.<br>Complete payment to access exclusive content.</p>
+            <div class="feature-grid">
+    
+                <div class="feature-card">
+                    <h3>Select payment method</h3>
+                    <hr>
+                    <div class="payment-methods">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="visa" checked onclick="togglePaymentFields()">
+                            <img src="{{ url_for('static', filename='images/visa.png') }}" alt="Visa">
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="mpesa" onclick="togglePaymentFields()">
+                            <img src="{{ url_for('static', filename='images/mpesa.png') }}" alt="M-Pesa">
+                        </label>
+                    </div>
+                    <!-- Card Details Section -->
+                    <div id="card-details" class="card-details">
+                        <form id="payment-form" method="post" action="{{ url_for('process_payment_shares') }}">
+                            <div class="input-group">
+                                <input type="text" id="customer-name" name="customer_name" placeholder="Your Full Name" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="customer-address" name="customer_address" placeholder="Your Address" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="hidden" id="total-price-input" name="total_price" value="10000" /> <!-- Hidden field for total price -->
+                            </div>
+                            <div id="card-element"><!-- Stripe.js will insert the Card Element here --></div>
+                            <div id="card-errors" role="alert"></div>
+                            <input type="hidden" name="payment" value="visa">
+                        </form>
+                    </div>
+    
+                    <!-- M-Pesa Fields Section -->
+                    <div id="mpesa-fields" style="display:none;">
+                        <form id="mpesa-form" method="post" action="{{ url_for('process_payment_shares') }}">
+                            <div class="input-group">
+                                <input type="text" id="full-name" name="full_name" placeholder="Your Full Name" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="mobile-number" name="mobile_number" placeholder="0712345678" required>
+                            </div>
+                            <input type="hidden" name="payment" value="mpesa">
+                            <p style="font-size: small;">You will receive an M-Pesa payment prompt on this number.</p>
+                        </form>
+                    </div>
+                </div>
+    
+                <div class="feature-card">
+                    <h3>Summary</h3>
+                    <hr>
+                    <div class="promo">
+                        <input type="text" id="promo-code" placeholder="Enter Promo Code" />
+                        <button onclick="applyCoupon()">Apply</button>
+                    </div>
+                    <div id="promo-message" style="display: none;"></div>
+                    <div class="summary-details">
+                        <hr>
+                        <p><strong>Total: </strong><span id="total-price"><strong>KES 100</strong></span></p>
+                    </div>
+                    <div class="terms">
+                        <p>By clicking pay, I agree to the use of my data in accordance with the DaNalysis Privacy Policy</p>
+                    </div>
+                    <button class="complete-payment-btn" id="submit">Complete Payment</button>
+                </div>    
+
+            </div>
+        </section>
+    </main>    
+
+    <!-- Modal for Success Message -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content modal-success">
+            <span class="close">&times;</span>
+            <p>Payment successful! You are now a premium member.</p>
+        </div>
+    </div>
+    
+    <footer>
+        <section class="footer-section">
+            <p>&copy; 2024 <a href="#">Website</a>. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+            </div>
+        </section>  
+    </footer>
+
+    <script>
+        // script.js
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+        });
+
+        const stripe = Stripe('pk_test_51Pn2ifK4FVOPIRC2yC2tQ2CszsAgrtIjA8B2IjY9Q6me87nVuqTwAeKlRzQLdwqeEJXvp0tIOYTMYUuWcERQk8uD00NDGcPssP');
+        const elements = stripe.elements();
+
+        const style = {
+            base: {
+                color: "#32325d",
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSmoothing: "antialiased",
+                fontSize: "16px",
+                "::placeholder": {
+                    color: "#aab7c4"
+                }
+            },
+            invalid: {
+                color: "#fa755a",
+                iconColor: "#fa755a"
+            }
+        };
+
+        const card = elements.create("card", { style: style });
+        card.mount("#card-element");
+
+        card.on('change', ({error}) => {
+            const displayError = document.getElementById('card-errors');
+            if (error) {
+                displayError.textContent = error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        const submitBtn = document.getElementById('submit');
+        const modal = document.getElementById("success-modal");
+        const span = document.getElementsByClassName("close")[0];
+
+        submitBtn.addEventListener('click', function(ev) {
+            ev.preventDefault();
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+            submitBtn.classList.add('processing');
+            submitBtn.innerHTML = '<span class="loading-spinner"></span> Processing...';
+
+            if (paymentMethod === 'visa') {
+                stripe.createToken(card).then(function(result) {
+                    if (result.error) {
+                        const errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = result.error.message;
+                        resetButton();
+                    } else {
+                        stripeTokenHandler(result.token);
+                    }
+                });
+            } else {
+                document.getElementById('mpesa-form').submit();
+            }
+        });
+
+        function stripeTokenHandler(token) {
+            const form = document.getElementById('payment-form');
+            const hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'stripeToken');
+            hiddenInput.setAttribute('value', token.id);
+            form.appendChild(hiddenInput);
+            form.submit();
+
+            // Display success modal
+            modal.style.display = "block";
+            resetButton();
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function resetButton() {
+            submitBtn.classList.remove('processing');
+            submitBtn.innerHTML = 'Complete Payment';
+        }
+    </script>
+</body>
+</html>

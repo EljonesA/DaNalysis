@@ -1,0 +1,196 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure body takes up full height */
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.payment-wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
+.payment-method-section, .summary-section {
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+.payment-methods {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+}
+
+.payment-option input {
+    margin-right: 10px;
+}
+
+.payment-option img {
+    width: 50px;
+}
+
+.card-details .input-group,
+#mpesa-fields .input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.input-group-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-group-row .input-group {
+    width: 48%;
+}
+
+.summary-section {
+    border-left: 1px solid #eaeaea;
+}
+
+.summary-details p {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #eaeaea;
+    margin: 20px 0;
+}
+
+.terms p {
+    margin-top: 0;
+}
+
+.terms ul {
+    list-style-type: disc; /* Add bullet points */
+    padding-left: 20px;
+    margin: 0;
+}
+
+.terms ul li {
+    margin-bottom: 10px;
+}
+
+.complete-payment-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.complete-payment-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Tablets and Medium-sized Screens */
+@media (max-width: 768px) {
+    .payment-wrapper {
+        flex-direction: column; /* Stack sections vertically */
+    }
+
+    .payment-method-section, .summary-section {
+        width: 100%; /* Take full width on smaller screens */
+        padding: 15px;
+    }
+
+    .summary-section {
+        border-left: none; /* Remove border for stacked layout */
+        border-top: 1px solid #eaeaea; /* Add border above for separation */
+        margin-top: 20px; /* Add some spacing */
+    }
+
+    .payment-methods {
+        flex-direction: column; /* Stack payment methods vertically */
+        align-items: flex-start; /* Align them to the start */
+    }
+
+    .payment-option {
+        margin-bottom: 10px; /* Add space between options */
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+    body {
+        padding: 10px; /* Add padding around the body */
+    }
+
+    .container {
+        box-shadow: none; /* Remove shadow on very small screens */
+        border-radius: 0; /* Remove border-radius */
+    }
+
+    .payment-wrapper {
+        padding: 15px;
+    }
+
+    .complete-payment-btn {
+        padding: 12px; /* Adjust button padding */
+        font-size: 14px; /* Adjust button font size */
+    }
+
+    .payment-option img {
+        width: 40px; /* Make payment method icons smaller */
+    }
+
+    .input-group label {
+        font-size: 14px; /* Make labels slightly smaller */
+    }
+
+    .input-group input {
+        padding: 8px; /* Adjust input padding */
+        font-size: 14px; /* Adjust input font size */
+    }
+
+    .input-group-row .input-group {
+        width: 100%; /* Make input groups take full width */
+        margin-bottom: 10px; /* Add spacing between rows */
+    }
+}

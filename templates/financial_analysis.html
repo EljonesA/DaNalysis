@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="{{ url_for('landing_page') }}">DaNalysis</a></div>
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <i class="fa fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('landing_page') }}">Home</a></li>
+                <li><a href="{{ url_for('financial_analysis') }}" class="active">Financial Analysis</a></li>
+                <li><a href="{{ url_for('page1') }}">Page 1</a></li>
+                <li><a href="{{ url_for('page2') }}">Page 2</a></li>
+                <li><a href="{{ url_for('logout') }}" class="logout-icon"><i class="fa fa-sign-out"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="feature-section_landing">
+            <h2 class="section-title">Safaricom Share Prices Current Year</h2>
+            <p class="section-description">Historical Daily Share Price of Safaricom.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <img src="{{ url_for('static', filename='images/stocks_one.png') }}" alt="Stocks Icon" class="feature-image">
+                    <h3 class="feature-heading">Page 1</h3>
+                    <p class="feature-text">.Share Prices July to Date. Freely accessible.</p>
+                    <a href="{{ url_for('page1') }}" class="learn-more">View Dashboard 1 →</a>
+                </div>
+                <div class="feature-card">
+                    <img src="{{ url_for('static', filename='images/pie-chart.png') }}" alt="Stocks Icon" class="feature-image">
+                    <h3 class="feature-heading">Page 2</h3>
+                    <p class="feature-text">Share Prices Prior to June.</p>
+                    <a href="{{ url_for('page2') }}" class="learn-more">View Dashboard 2 →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <section class="footer-section">
+            <p>&copy; 2024 <a href="#">Website</a>. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+            </div>
+        </section>  
+    </footer>
+
+    <script>
+        // script.js
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('show');
+            });
+        });
+    </script>
+</body>
+</html>

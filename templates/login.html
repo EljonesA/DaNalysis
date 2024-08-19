@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - DaNalysis</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <h2 class="auth-title">Login</h2>
+            <!-- login.html -->
+            <form class="auth-form" method="POST" action="{{ url_for('login') }}">
+                <input type="email" placeholder="Email" class="auth-input" name="email" required>
+                <input type="password" placeholder="Password" class="auth-input" name="password" required>
+                <button type="submit" class="auth-button">Login</button>
+            </form>
+            <p class="auth-text">Don't have an account? <a href="{{ url_for('signup') }}" class="auth-link">Sign up here</a>.</p>
+        </div>
+    </div>
+</body>
+</html>

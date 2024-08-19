@@ -1,0 +1,561 @@
+/* Reset some default styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%; /* Ensure body takes full height */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure the main content takes the remaining space */
+main {
+    flex: 1;
+    padding: 2rem 1rem;
+}
+
+header {
+    background-color: #e3e7f2;
+    padding: 1rem;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-toggle {
+    display: none; /* Hide toggle button by default */
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.logo a {
+    list-style: none;
+    text-decoration: none;
+    color: #e11d48; /* Modify logo color */
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 3rem;
+    margin-right: 1.5rem;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.nav-links li a:hover {
+    color: #e11d48
+}
+
+.nav-links li a.active {
+    text-decoration: underline;
+    text-decoration-color: #e11d48;
+    text-decoration-thickness: 4px;
+}
+
+.auth-buttons a {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.sign-up {
+    background-color: #e11d48;
+    color: #fff;
+    margin-right: 0.5rem;
+}
+
+.sign-in {
+    background-color: #fff;
+    color: #e11d48;
+    border: 1px solid #e11d48;
+}
+
+main {
+    padding: 2rem 1rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section-description {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+}
+
+/* LANDING PAGE FEATURE SECTION */
+.feature-section_landing .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.feature-section_landing .feature-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border: 1px solid #e3e7f2;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    transition: transform 0.3s ease; /* Animation for hover effect */
+}
+
+.feature-section_landing .feature-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+.feature-section_landing .feature-image {
+    max-width: 120px; /* Image size */
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.feature-section_landing .feature-heading {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.feature-section_landing .feature-text {
+    margin-top: 0.5rem;
+    color: #666;
+}
+
+.feature-section_landing .learn-more {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #e11d48;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.feature-section_landing .learn-more:hover {
+    text-decoration: underline;
+}
+
+
+/* OTHER PAGES FEATURE SECTION */
+.feature-section .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Change to one column */
+    gap: 1.5rem; /* Increase gap between the cards */
+    max-width: 800px; /* Adjust max width to match the design */
+    margin: 0 auto; /* Center the grid on the page */
+    padding: 1rem; /* Add padding around the grid */
+}
+
+.feature-card {
+    background-color: #fff;
+    padding: 2rem; /* Increase padding inside the cards */
+    border: 1px solid #e3e7f2;
+    border-radius: 10px; /* Slightly more rounded corners */
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add hover effects */
+}
+
+.feature-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.15); /* Slightly larger shadow */
+}
+
+.feature-heading {
+    margin-top: 1rem; /* Increase space between title and top of the card */
+    font-size: 1.4rem; /* Slightly larger font size for the heading */
+    color: #333; /* Ensure consistent color */
+}
+
+.feature-text {
+    margin-top: 1rem; /* Increase space between heading and text */
+    color: #666; /* Maintain consistent text color */
+    font-size: 1rem; /* Adjust font size */
+    line-height: 1.5; /* Add line-height for better readability */
+}
+
+.learn-more {
+    display: inline-block;
+    margin-top: 1.5rem; /* Increase margin above the link */
+    color: #e11d48;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem; /* Adjust font size */
+}
+
+/* Footer styling */
+footer {
+    border-top: 1px solid #e11d48; /* Adds a thin border above the footer */
+}
+
+.footer-section {
+    padding: 1rem 2rem;
+    background-color: #e3e7f2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: #e11d48;
+    text-decoration: none;
+}
+
+.social-links {
+    display: flex;
+    gap: 2rem;
+}
+
+/* Social Icons Brand Colors */
+.social-links a {
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.social-links a i.fa-facebook {
+    color: #3b5998; /* Facebook Blue */
+}
+
+.social-links a i.fa-instagram {
+    color: #e4405f; /* Instagram Gradient Pinkish Red */
+}
+
+.social-links a i.fa-linkedin {
+    color: #0077b5; /* LinkedIn Blue */
+}
+
+.social-links a i.fa-youtube {
+    color: #ff0000; /* YouTube Red */
+}
+
+
+
+/* Auth pages styling */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f7fc;
+}
+
+.auth-box {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.auth-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.auth-input {
+    padding: 0.75rem;
+    border: 1px solid #e3e7f2;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.auth-button {
+    padding: 0.75rem;
+    background-color: #e11d48;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.auth-button:hover {
+    background-color: #e11d48;
+}
+
+.auth-text {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.auth-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+.chart-container {
+    position: relative;
+    margin-bottom: 5rem;
+    padding: 1rem;
+    border: 1px solid #e3e7f2;
+    border-radius: 8px;
+}
+
+/* Adjust the positioning of the title */
+.chart-container h3 {
+    margin-bottom: 1rem;
+}
+
+/* Icon style */
+.toggle-modal-btn::before {
+    content: "ⓘ";
+    font-size: 1rem;
+    margin-right: 0.5rem; /* Space between icon and text */
+}
+
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 50;
+    width: 100%;
+    height: calc(100% - 1rem);
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* backdrop color */
+}
+
+.modal-container {
+    position: relative;
+    padding: 1rem;
+    width: 100%;
+    max-width: 42rem;
+    max-height: 100vh;
+}
+
+.modal-content {
+    position: relative;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal Header */
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.close-modal-btn {
+    color: #9ca3af;
+    background-color: transparent;
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.close-modal-btn:hover {
+    color: red;
+}
+
+.close-icon {
+    width: 0.75rem;
+    height: 0.75rem;
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 1rem;
+    font-size: 1rem;
+    line-height: 1.75rem;
+    color: #6b7280;
+}
+
+.modal-body ul {
+    margin-left: 5px;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+/* Filter buttons styling */
+.filter-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.btn-filter {
+    margin-bottom: 1rem;
+    background-color: #e3e7f2;
+    padding: 0.375rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    text-align: center;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #d1d5db;
+    color: #000;
+    transition: background-color 0.3s;
+}
+
+.btn-filter:hover {
+    background-color: #e11d48;
+    color: white;
+}
+
+
+/* ===== RESPONSIVENESS ===== */
+/* Mobile Devices (up to 600px) */
+@media only screen and (max-width: 600px) {
+    .menu-toggle {
+        display: inline; /* Show toggle button on small screens */
+    }
+    
+    .nav-links {
+        display: none; /* Hide menu by default on small screens */
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        position: absolute;
+        top: 60px; /* Adjust based on header height */
+        right: 0;
+        left: 0;
+        background-color: #fff;
+        border: 1px solid #e3e7f2;
+        border-radius: 0 0 8px 8px;
+        z-index: 1000; /* Ensure the menu appears above other elements */
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.show {
+        display: flex; /* Show menu when toggle button is clicked */
+    }
+    
+    .feature-section_landing .feature-grid {
+        grid-template-columns: 1fr; /* One column layout for small screens */
+        gap: 1rem;
+    }
+    
+    .footer-section {
+        flex-direction: column;
+    }
+    
+    .social-links {
+        margin-top: 1rem;
+        gap: 2rem;
+    }
+}
+
+/* Tablets (601px to 900px) */
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+    .menu-toggle {
+        display: inline; /* Show toggle button on small screens */
+    }
+    
+    .nav-links {
+        display: none; /* Hide menu by default on small screens */
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        position: absolute;
+        top: 60px; /* Adjust based on header height */
+        right: 0;
+        left: 0;
+        background-color: #fff;
+        border: 1px solid #e3e7f2;
+        border-radius: 0 0 8px 8px;
+        z-index: 1000; /* Ensure the menu appears above other elements */
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.show {
+        display: flex; /* Show menu when toggle button is clicked */
+    }
+    
+    .feature-section_landing .feature-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns layout for tablets */
+        gap: 1.5rem;
+    }
+}
+
+/* Laptops and Larger Devices (above 900px) */
+@media only screen and (min-width: 901px) {
+    .navbar {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .nav-links {
+        flex-direction: row;
+        gap: 3rem;
+        margin-right: 1.5rem;
+    }
+    
+    .feature-section_landing .feature-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns layout for larger screens */
+        gap: 2rem;
+    }
+}

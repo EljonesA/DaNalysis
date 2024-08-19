@@ -19,7 +19,6 @@ MarkupSafe==2.1.5
 numpy==2.0.0
 openpyxl==3.1.5
 platformdirs==4.2.2
-Pyrebase4==4.8.0
 python-engineio==4.9.1
 python-socketio==5.11.3
 pytz==2024.1
